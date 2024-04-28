@@ -1,0 +1,100 @@
+/* Estilos generales */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #000000;
+    padding: 20px;
+    display: flex; /* Utiliza flexbox para el diseño */
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 24px; /* Tamaño de fuente reducido */
+    margin: 0; /* Elimina el margen superior e inferior */
+}
+
+nav {
+    text-align: left; /* Ajusta la alineación del texto a la izquierda */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle; /* Alinea verticalmente con el texto */
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff; /* Color del texto blanco */
+    font-size: 18px; /* Tamaño de fuente reducido */
+}
+
+nav li img {
+    width: 100px; /* Ancho de la imagen */
+    height: auto; /* Altura ajustada automáticamente */
+    vertical-align: middle; /* Alinea verticalmente con el texto */
+}
+
+main {
+    padding: 20px;
+    text-align: center; /* Centra el contenido */
+}
+
+.form {
+    margin-bottom: 20px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input[type="text"],
+.form input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px; /* Aumenta el padding para hacer el botón más grande */
+    border: none;
+    cursor: pointer;
+    display: block; /* Cambia a display block */
+    margin: 20px auto 0; /* Añade espacio arriba del botón y lo centra horizontalmente */
+}
+
+.qr {
+    background-color: rgb(255, 255, 255); /* Fondo negro */
+    color: rgb(0, 0, 0); /* Texto blanco */
+    padding: 20px; /* Espacio interior */
+    text-align: center; /* Centra el contenido */
+    margin-top: 20px; /* Espacio arriba */
+}
+
+.qr img {
+    width: 200px; /* Ancho de la imagen */
+    height: auto; /* Altura ajustada automáticamente */
+    vertical-align: middle; /* Alinea verticalmente con el texto */
+}
+
+footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+}

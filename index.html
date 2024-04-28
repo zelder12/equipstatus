@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EquipStatus</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>EquipStatus</h1>
+        <nav>
+            <ul>
+                <li><img src="enlaces.png" alt="Enlaces"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form">
+            <h2>Información del estudiante</h2>
+            <form id="mensajeForm">
+                <label for="telefonoResponsable">Número de teléfono del responsable:</label>
+                <input type="tel" id="telefonoResponsable" name="telefonoResponsable" required>
+
+                <label for="nombreEstudiante">Nombre estudiante:</label>
+                <input type="text" id="nombreEstudiante" name="nombreEstudiante" required>
+
+                <label for="nombreResponsable">Nombre responsable:</label>
+                <input type="text" id="nombreResponsable" name="nombreResponsable" required>
+
+                <label for="equipoReparado">Equipo reparado:</label>
+                <input type="text" id="equipoReparado" name="equipoReparado" required>
+
+                <button type="submit">Enviar mensaje</button>
+            </form>
+       
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EquipStatus</p>
+    </footer>
+
+    <script>
+        document.getElementById('mensajeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que se envíe el formulario de forma tradicional
+            
+            // Obtiene los datos del formulario
+            var telefonoResponsable = document.getElementById('telefonoResponsable').value;
+            var nombreEstudiante = document.getElementById('nombreEstudiante').value;
+            var nombreResponsable = document.getElementById('nombreResponsable').value;
+            var equipoReparado = document.getElementById('equipoReparado').value;
+            
+            // Formato del mensaje
+            var mensaje = "Hola "+ nombreResponsable + " le saludamos del soporte tecnico, sede ciudad el triunfo "  + ", el equipo " + equipoReparado + " de " + nombreEstudiante + " ha sido reparado satisfactoriamente puede pasar a recogerlo en la cede.";
+            
+            // Genera el enlace de WhatsAppMe
+            var whatsappUrl = "https://wa.me/" + telefonoResponsable + "?text=" + encodeURIComponent(mensaje);
+            
+            // Abre WhatsApp en una nueva ventana o pestaña
+            window.open(whatsappUrl);
+        });
+    </script>
+</body>
+</html>
