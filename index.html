@@ -43,21 +43,17 @@
 
     <script>
         document.getElementById('mensajeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita que se envíe el formulario de forma tradicional
+            event.preventDefault();
             
-            // Obtiene los datos del formulario
             var telefonoResponsable = document.getElementById('telefonoResponsable').value;
             var nombreEstudiante = document.getElementById('nombreEstudiante').value;
             var nombreResponsable = document.getElementById('nombreResponsable').value;
             var equipoReparado = document.getElementById('equipoReparado').value;
             
-            // Formato del mensaje
             var mensaje = "Hola "+ nombreResponsable + " le saludamos del soporte tecnico, sede ciudad el triunfo "  + ", el equipo " + equipoReparado + " de " + nombreEstudiante + " ha sido reparado satisfactoriamente puede pasar a recogerlo en la cede.";
             
-            // Genera el enlace de WhatsAppMe
             var whatsappUrl = "https://wa.me/" + telefonoResponsable + "?text=" + encodeURIComponent(mensaje);
             
-            // Abre WhatsApp en una nueva ventana o pestaña
             window.open(whatsappUrl);
         });
     </script>
