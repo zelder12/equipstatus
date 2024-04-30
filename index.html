@@ -29,33 +29,66 @@
                 <label for="nombreResponsable">Nombre responsable:</label>
                 <input type="text" id="nombreResponsable" name="nombreResponsable" required>
 
-                <label for="equipoReparado">Equipo reparado:</label>
-                <input type="text" id="equipoReparado" name="equipoReparado" required>
+                <label for="equipoReparado">Seleccione el equipo reparado:</label>
+                <select id="equipoReparado" name="equipoReparado" required>
+                    <option value="tablet">Tablet</option>
+                    <option value="laptop">Laptop</option>
+                </select>
 
                 <button type="submit">Enviar mensaje</button>
             </form>
-       
+            <!-- Contenedor para el flujo de vídeo del escáner QR -->
+            <div id="scanner-container"></div>
+            <!-- Botón para escanear QR -->
+            <button id="scanQR">Escanear código QR</button>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2024 EquipStatus</p>
     </footer>
 
+    <!-- Script de Quagga.js -->
+    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
     <script>
-        document.getElementById('mensajeForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            var telefonoResponsable = document.getElementById('telefonoResponsable').value;
-            var nombreEstudiante = document.getElementById('nombreEstudiante').value;
-            var nombreResponsable = document.getElementById('nombreResponsable').value;
-            var equipoReparado = document.getElementById('equipoReparado').value;
-            
-            var mensaje = "Hola "+ nombreResponsable + " le saludamos del soporte tecnico, sede ciudad el triunfo "  + ", el equipo " + equipoReparado + " de " + nombreEstudiante + " ha sido reparado satisfactoriamente puede pasar a recogerlo en la cede.";
-            
-            var whatsappUrl = "https://wa.me/" + telefonoResponsable + "?text=" + encodeURIComponent(mensaje);
-            
-            window.open(whatsappUrl);
-        });
+        // Función para inicializar QuaggaJS y manejar la detección de códigos QR
+        function iniciarEscaneoQR() {
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scanner-container"),
+                    constraints: {
+                        width: 640,
+                        height: 480,
+                        facingMode: "environment" // Usa la cámara trasera del dispositivo
+                    }
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
+                }
+            }, function (err) {
+                if (err) {
+                    console.error("Error al inicializar Quagga: ", err);
+                    return;
+                }
+                console.log("Quagga inicializado correctamente.");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function (result) {
+                console.log("Código detectado: ", result.codeResult.code);
+                // Aquí puedes realizar las acciones que desees con el código detectado
+                // Por ejemplo, llenar algún campo del formulario con el valor del código QR
+                document.getElementById('telefonoResponsable').value = result.codeResult.code;
+                // Detener el escaneo después de detectar un código
+                Quagga.stop();
+            });
+        }
+
+        // Evento click para iniciar el escaneo de códigos QR
+        document.getElementById('scanQR').addEventListener('click', iniciarEscaneoQR);
     </script>
 </body>
 </html>
+
