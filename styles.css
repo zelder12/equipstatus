@@ -84,7 +84,7 @@ main {
     width: 100%;
     padding: 5px;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 1px solid #787878;
     box-sizing: border-box;
     margin-bottom: 10px;
     background-color: #fff;
@@ -126,4 +126,14 @@ footer {
         margin-bottom: 10px;
     }
 }
-
+div{
+    background-color: #434343; 
+    margin: 0 20px 0px 40px;
+    padding: 0 20px 0px 20px;
+}
+input{
+    border-radius: 10px;
+}
+select{
+    border-radius: 10px;
+}
