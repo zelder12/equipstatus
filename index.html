@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EquipStatus</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <h1>EquipStatus</h1>
@@ -15,54 +17,52 @@
             </ul>
         </nav>
     </header>
+    <div>
+        <main>
+            <section class="form">
+                <h2>Información del estudiante</h2>
+                <form id="mensajeForm">
+                    <label for="telefonoResponsable">Número de teléfono del responsable:</label>
+                    <input type="tel" id="telefonoResponsable" name="telefonoResponsable" required>
 
-    <main>
-        <div>
-            <br>
-        <section class="form">
-            <h2>Información del estudiante</h2>
-            <form id="mensajeForm">
-                <label for="telefonoResponsable">Número de teléfono del responsable:</label>
-                <input type="tel" id="telefonoResponsable" name="telefonoResponsable" required>
+                    <label for="nombreEstudiante">Nombre estudiante:</label>
+                    <input type="text" id="nombreEstudiante" name="nombreEstudiante" required>
 
-                <label for="nombreEstudiante">Nombre estudiante:</label>
-                <input type="text" id="nombreEstudiante" name="nombreEstudiante" required>
+                    <label for="equipoReparado">Seleccione el equipo reparado:</label>
+                    <select id="equipoReparado" name="equipoReparado" required>
+                        <option value="tablet">Tablet</option>
+                        <option value="laptop">Laptop</option>
+                    </select>
 
-                <label for="nombreResponsable">Nombre responsable:</label>
-                <input type="text" id="nombreResponsable" name="nombreResponsable" required>
+                    <label for="Sustitureparado">Estado del equipo:</label>
+                    <select id="Sustitureparado" name="Sustitureparado" required>
+                        <option value="sustituida">Sustituida</option>
+                        <option value="reparada">Reparada</option>
+                    </select>
 
-                <label for="equipoReparado">Seleccione el equipo reparado:</label>
-                <select id="equipoReparado" name="equipoReparado" required>
-                    <option value="tablet">Tablet</option>
-                    <option value="laptop">Laptop</option>
-                </select>
-            
-
-                <button type="submit">Enviar mensaje</button>
-                <br>
-            </div>
-            </form>
-        </section>
-    </main>
-
+                    <button type="submit">Enviar mensaje</button>
+                </form>
+            </section>
+        </main>
+    </div>
     <footer>
         <p>&copy; 2024 EquipStatus</p>
     </footer>
 
     <script>
-        document.getElementById('mensajeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            
+        document.getElementById('mensajeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
             var telefonoResponsable = document.getElementById('telefonoResponsable').value;
             var nombreEstudiante = document.getElementById('nombreEstudiante').value;
-            var nombreResponsable = document.getElementById('nombreResponsable').value;
             var equipoReparado = document.getElementById('equipoReparado').value;
-            var mensaje = "Estimado/a " + nombreResponsable + ", le comunicamos que el equipo (" + equipoReparado + ") del estudiante " + nombreEstudiante + " ha sido reparado exitosamente. Le solicitamos que pase a recogerlo en nuestra sede de Ciudad El Triunfo.";
+            var Sustitureparado = document.getElementById('Sustitureparado').value;
+            var mensaje = "Estimado/a RESPONSABLE, le comunicamos que el equipo (" + equipoReparado + ") del estudiante " + nombreEstudiante + " ha sido  (" + Sustitureparado + ") exitosamente. Le solicitamos que pase a retirarlo de manera urgente a la Sede de Soporte Técnico de Ciudad El Triunfo en horario de Lunes a Viernes de 7:30 am a 3:30 pm, presentando su Documento Único de identidad (DUI) y el comprobante con el número de Ticket.";
             var whatsappUrl = "https://wa.me/" + telefonoResponsable + "?text=" + encodeURIComponent(mensaje);
-            
+
             window.open(whatsappUrl);
         });
     </script>
 </body>
-</html>
 
+</html>
