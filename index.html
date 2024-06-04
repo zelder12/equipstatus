@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-<link rel="icon" type="https://cdn.sstatic.net/Sites/es/img/apple-touch-icon.png?v=7739871010e6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EquipStatus</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="icon.png" />
+    
 </head>
 
 <body>
@@ -21,13 +21,19 @@
     <div>
         <main>
             <section class="form">
-                <h2>Información del estudiante</h2>
+                <h2 class="help">EquipStatus</h2>
                 <form id="mensajeForm">
-                    <label for="telefonoResponsable">Número de teléfono del responsable:</label>
-                    <input type="tel" id="telefonoResponsable" name="telefonoResponsable" required>
+                    <label for="rol">Seleccione el rol del destinatario:</label>
+                    <select id="rol" name="rol" required>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="docente">Docente</option>
+                    </select>
 
-                    <label for="nombreEstudiante">Nombre estudiante:</label>
-                    <input type="text" id="nombreEstudiante" name="nombreEstudiante" required>
+                    <label for="telefonoResponsable">Número de teléfono del responsable:</label>
+                    <input type="tel" id="telefonoResponsable" name="telefonoResponsable" required style="text-align: center;">
+
+                    <label for="nombreUsuario">Nombre Alumno/Docente:</label>
+                    <input type="text" id="nombreUsuario" name="nombreUsuario" required style="text-align: center;">
 
                     <label for="equipoReparado">Seleccione el equipo reparado:</label>
                     <select id="equipoReparado" name="equipoReparado" required>
@@ -35,8 +41,8 @@
                         <option value="tablet">Tablet</option>
                     </select>
 
-                    <label for="Sustitureparado">Estado del equipo:</label>
-                    <select id="Sustitureparado" name="Sustitureparado" required>
+                    <label for="estadoEquipo">Estado del equipo:</label>
+                    <select id="estadoEquipo" name="estadoEquipo" required>
                         <option value="reparado">Reparado</option>
                         <option value="sustitución">Sustitución</option>
                     </select>
@@ -54,16 +60,25 @@
         document.getElementById('mensajeForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
+            var rol = document.getElementById('rol').value;
             var telefonoResponsable = document.getElementById('telefonoResponsable').value;
-            var nombreEstudiante = document.getElementById('nombreEstudiante').value;
+            var nombreUsuario = document.getElementById('nombreUsuario').value;
             var equipoReparado = document.getElementById('equipoReparado').value;
-            var Sustitureparado = document.getElementById('Sustitureparado').value;
-            var mensaje = "Estimado/a RESPONSABLE, le comunicamos que el equipo (" + equipoReparado + ") del estudiante " + nombreEstudiante + " ha sido  (" + Sustitureparado + ") exitosamente. Le solicitamos que pase a retirarlo de manera urgente a la Sede de Soporte Técnico de Ciudad El Triunfo de 7:30 am a 3:30 pm, presentando su DUI y el comprobante con el número de Ticket.";
+            var estadoEquipo = document.getElementById('estadoEquipo').value;
+
+            var mensaje = "";
+            if (rol === "estudiante") {
+                mensaje = "Estimado/a RESPONSABLE, le comunicamos que el equipo (" + equipoReparado + ") del estudiante " + nombreUsuario + " ha sido  (" + estadoEquipo + ") exitosamente. Le solicitamos que pase a retirarlo de manera urgente a la Sede de Soporte Técnico de Ciudad El Triunfo de 7:30 am a 3:30 pm, presentando su DUI y el comprobante con el número de Ticket.";
+            } else if (rol === "docente") {
+                var mensaje = "Estimado/a docente, " + nombreUsuario + ", le comunicamos que el equipo (" + equipoReparado + ") ha sido (" + estadoEquipo + ") exitosamente. Le solicitamos que pase a retirarlo de manera urgente a la Sede de Soporte Técnico de Ciudad El Triunfo de 7:30 am a 3:30 pm, presentando su DUI y el comprobante con el número de Ticket.";
+
+            }
+
             var whatsappUrl = "https://wa.me/" + telefonoResponsable + "?text=" + encodeURIComponent(mensaje);
 
             window.open(whatsappUrl);
         });
     </script>
 </body>
-
 </html>
+
